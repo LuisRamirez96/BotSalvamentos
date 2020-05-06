@@ -9,7 +9,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1240,6119</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1240,6475</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Facturas_Processes_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="21">
@@ -37,7 +37,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="21">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="20">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -58,10 +58,9 @@
       <AssemblyReference>System.ServiceModel</AssemblyReference>
       <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>UiPath.Mail</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Este proceso realiza el vaciado de datos de Excel, para colocar los criterios de busqueda de facturas" DisplayName="Facturas_Processes" sap:VirtualizedContainerService.HintSize="797,5914" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Este proceso realiza el vaciado de datos de Excel, para colocar los criterios de busqueda de facturas" DisplayName="Facturas_Processes" sap:VirtualizedContainerService.HintSize="797,6270" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="Day" />
       <Variable x:TypeArguments="x:String" Name="Period" />
@@ -73,6 +72,7 @@
       <Variable x:TypeArguments="x:Boolean" Name="NoResultados" />
       <Variable x:TypeArguments="x:Boolean" Name="Advertencia" />
       <Variable x:TypeArguments="x:String" Name="TotalStr" />
+      <Variable x:TypeArguments="x:Boolean" Name="CeldaTotalTesoreria" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -438,20 +438,46 @@
     </If>
     <If Condition="[Advertencia]" DisplayName="Si Advertencia existio y despues - No se encontraron resultados" sap:VirtualizedContainerService.HintSize="755,239" sap2010:WorkflowViewState.IdRef="If_5">
       <If.Then>
-        <Throw DisplayName="Lanzar excepción Ocurrió Una Advertencia" Exception="[new UiPath.Core.BusinessRuleException(&quot;No hay resultados de factura&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_5" />
+        <Throw DisplayName="Lanzar excepción Ocurrió Una Advertencia" Exception="[new UiPath.Core.BusinessRuleException(&quot;Ocurrio una advertencia&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_5" />
       </If.Then>
       <If.Else>
         <ui:LogMessage DisplayName="Registrar mensaje No Ocurrio Advertencia" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_14" Level="Info" Message="[&quot;No Ocurrio Advertencia&quot;]" />
       </If.Else>
     </If>
-    <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Obtener texto 'Total'" sap:VirtualizedContainerService.HintSize="755,106" sap2010:WorkflowViewState.IdRef="GetValue_1">
-      <ui:GetValue.Target>
-        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="c57364720baaa91b00f0248b23d48177" Selector="&lt;wnd app='tesoreria.ui.win32.exe' ctrlname='MainForm' /&gt;&lt;wnd ctrlname='frmProcesoAnular' /&gt;&lt;wnd ctrlname='gpoFacturas' /&gt;&lt;wnd ctrlname='grdFacturas' /&gt;&lt;ctrl name='Row 1' role='row' /&gt;&lt;ctrl name='Total row 0' role='cell' /&gt;" TimeoutMS="60000" WaitForReady="COMPLETE" />
-      </ui:GetValue.Target>
-      <ui:GetValue.Value>
-        <OutArgument x:TypeArguments="x:String">[Total]</OutArgument>
-      </ui:GetValue.Value>
-    </ui:GetValue>
+    <ui:UiElementExists sap2010:Annotation.AnnotationText="Se añadió un delay para asegurar que la celda cargue" DisplayName="Elemento existente 'Total de Tesoreria'" Exists="[CeldaTotalTesoreria]" sap:VirtualizedContainerService.HintSize="755,137" sap2010:WorkflowViewState.IdRef="UiElementExists_5">
+      <ui:UiElementExists.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="eec79011d469989abab41b4068a9527b" Selector="&lt;wnd app='tesoreria.ui.win32.exe' ctrlname='MainForm' /&gt;&lt;wnd ctrlname='frmProcesoAnular' /&gt;&lt;wnd ctrlname='gpoFacturas' /&gt;&lt;wnd ctrlname='grdFacturas' /&gt;&lt;ctrl name='Row 1' role='row' /&gt;&lt;ctrl name='Total row 0' role='cell' /&gt;" TimeoutMS="60000">
+          <ui:Target.WaitForReady>
+            <InArgument x:TypeArguments="ui:WaitForReady" />
+          </ui:Target.WaitForReady>
+        </ui:Target>
+      </ui:UiElementExists.Target>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:UiElementExists>
+    <If Condition="[CeldaTotalTesoreria]" DisplayName="Si" sap:VirtualizedContainerService.HintSize="755,285" sap2010:WorkflowViewState.IdRef="If_6">
+      <If.Then>
+        <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Se agrego un delay por el tiempo de espera" DisplayName="Obtener texto 'Total'" sap:VirtualizedContainerService.HintSize="334,137" sap2010:WorkflowViewState.IdRef="GetValue_1">
+          <ui:GetValue.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="c57364720baaa91b00f0248b23d48177" Selector="&lt;wnd app='tesoreria.ui.win32.exe' ctrlname='MainForm' /&gt;&lt;wnd ctrlname='frmProcesoAnular' /&gt;&lt;wnd ctrlname='gpoFacturas' /&gt;&lt;wnd ctrlname='grdFacturas' /&gt;&lt;ctrl name='Row 1' role='row' /&gt;&lt;ctrl name='Total row 0' role='cell' /&gt;" TimeoutMS="2000" WaitForReady="COMPLETE" />
+          </ui:GetValue.Target>
+          <ui:GetValue.Value>
+            <OutArgument x:TypeArguments="x:String">[Total]</OutArgument>
+          </ui:GetValue.Value>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </ui:GetValue>
+      </If.Then>
+      <If.Else>
+        <Throw DisplayName="Lanzar excepción No se encontro Registro" Exception="[new UiPath.Core.BusinessRuleException(&quot;No hay resultados de factura&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_6" />
+      </If.Else>
+    </If>
     <ui:LogMessage DisplayName="Registrar mensaje Total Obtenido de Tesoreria" sap:VirtualizedContainerService.HintSize="755,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[Total +&quot; Obtenido de tesoreria&quot;]" />
     <Assign DisplayName="Total String remover , y $" sap:VirtualizedContainerService.HintSize="755,60" sap2010:WorkflowViewState.IdRef="Assign_13">
       <Assign.To>

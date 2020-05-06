@@ -59,6 +59,7 @@
       <AssemblyReference>UiPath.Mail</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence sap2010:Annotation.AnnotationText="Este proceso envía por correo las carpetas de facturas y pdf correspondientes" DisplayName="Envio_De_Correo_Final" sap:VirtualizedContainerService.HintSize="598,2655" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -118,7 +119,7 @@
             </ui:SendOutlookMail.Files>
           </ui:SendOutlookMail>
           <ui:Delete ContinueOnError="{x:Null}" DisplayName="Eliminar Segura ZIP" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Delete_4" Path="[RutaDesktop+&quot;\Carpeta Facturas S. Segura.zip&quot;]" />
-          <ui:LogMessage DisplayName="Registrar mensaje Correo Segura" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;Se envio correo Segura y eliminó ZIP&quot;]" />
+          <ui:LogMessage DisplayName="Registrar mensaje Correo Segura" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;Se envio correo Segura Final y eliminó ZIP&quot;]" />
         </Sequence>
       </If.Then>
     </If>
@@ -140,7 +141,7 @@
             </ui:SendOutlookMail.Files>
           </ui:SendOutlookMail>
           <ui:Delete ContinueOnError="{x:Null}" DisplayName="Eliminar Auto Online ZIP" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Delete_5" Path="[RutaDesktop+&quot;\Carpeta Facturas Auto Online.zip&quot;]" />
-          <ui:LogMessage DisplayName="Registrar mensaje Correo Auto Online" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;Se envio correo AutoOnline y eliminó ZIP&quot;]" />
+          <ui:LogMessage DisplayName="Registrar mensaje Correo Auto Online" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;Se envio correo AutoOnline Final y eliminó ZIP&quot;]" />
         </Sequence>
       </If.Then>
     </If>
@@ -154,7 +155,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <be:ZipFiles MultipleFolders="{x:Null}" Password="{x:Null}" DisplayName="Zip S. Ventura" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="ZipFiles_7" SourceFolder="[RutaDesktop+&quot;\Carpeta Facturas S. Ventura&quot;]" ZipFile="[RutaDesktop+&quot;\Carpeta Facturas S. Ventura.zip&quot;]" />
-          <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Account="[in_CuentaOrigen]" Body="[in_Body]" DisplayName="Send Outlook Mail Message S. Ventura ZIP" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="SendOutlookMail_7" IsBodyHtml="True" IsDraft="False" Subject="[in_Asunto+&quot; de S. Ventura&quot;]" To="[in_DestinoVentura]">
+          <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Account="[in_CuentaOrigen]" Body="[in_Body]" DisplayName="Send Outlook Mail Message S. Ventura ZIP" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="SendOutlookMail_7" IsBodyHtml="True" IsDraft="False" Subject="[in_Asunto]" To="[in_DestinoVentura]">
             <ui:SendOutlookMail.Files>
               <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
                 <InArgument x:TypeArguments="x:String">[RutaDesktop+"\Carpeta Facturas S. Ventura.zip"]</InArgument>
@@ -162,7 +163,7 @@
             </ui:SendOutlookMail.Files>
           </ui:SendOutlookMail>
           <ui:Delete ContinueOnError="{x:Null}" DisplayName="Eliminar Ventura ZIP" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Delete_7" Path="[RutaDesktop+&quot;\Carpeta Facturas S. Ventura.zip&quot;]" />
-          <ui:LogMessage DisplayName="Registrar mensaje Correo Ventura" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[&quot;Se envio correo Ventura y eliminó ZIP&quot;]" />
+          <ui:LogMessage DisplayName="Registrar mensaje Correo Ventura" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[&quot;Se envio correo Ventura Final y eliminó ZIP&quot;]" />
         </Sequence>
       </If.Then>
     </If>

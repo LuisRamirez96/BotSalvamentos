@@ -5,7 +5,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>960,811</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1240,938</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Initialization_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -59,7 +59,7 @@
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Open applications used in the process and do necessary initialization procedures (e.g., login)." DisplayName="Initialize All Applications" sap:VirtualizedContainerService.HintSize="376,606" sap2010:WorkflowViewState.IdRef="Sequence_9">
+  <Sequence sap2010:Annotation.AnnotationText="Open applications used in the process and do necessary initialization procedures (e.g., login)." DisplayName="Initialize All Applications" sap:VirtualizedContainerService.HintSize="376,733" sap2010:WorkflowViewState.IdRef="Sequence_9">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -69,20 +69,27 @@
     <ui:LogMessage DisplayName="Log message (Initialize applications)" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Opening applications...&quot;]" />
     <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Ejecutar de Windows workflow" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="UNO Tesoreria/Windows Ejecutar.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="In_RutaTesoreria">[in_Config("Tesoreria_Path").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_RutaTesoreria">[in_Config("Tesoreria_Path").ToString]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Login workflow" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="UNO Tesoreria\Login.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="In_UserTesoreria">[in_Config("User_Tesoreria").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="In_PasswordTesoreria">[in_Config("Password_Tesoreria").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_UserTesoreria">[in_Config("User_Tesoreria").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PasswordTesoreria">[in_Config("Password_Tesoreria").ToString]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Delete And Create Folder workflow" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="UNO Tesoreria\Delete And Create Folder.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="In_CarpetaSSegura" />
-        <InArgument x:TypeArguments="x:String" x:Key="In_CarpetaAutoOnline" />
-        <InArgument x:TypeArguments="x:String" x:Key="In_CarpetaSVentura" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_CarpetaSSegura" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_CarpetaAutoOnline" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_CarpetaSVentura" />
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Search For Subject Email workflow" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="UNO Tesoreria\Search For Subject Email.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_MailAccount">[in_Config("UserAccount").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_SearchCriteria">[in_Config("SearchCriteria").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_FolderLayout">[in_Config("FolderLayout").ToString]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
   </Sequence>

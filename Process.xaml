@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1240,954</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1240,994</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -56,6 +56,7 @@
       <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
       <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="392,789" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -67,13 +68,27 @@
     </sap:WorkflowViewStateService.ViewState>
     <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Validate Item workflow" sap:VirtualizedContainerService.HintSize="350,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="UNO Tesoreria\Validate Item.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="In_FactId">[in_TransactionItem("FACT_ID").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="In_Subastadora">[in_TransactionItem("SUBASTADORA").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="In_Fecha">[in_TransactionItem("FACT_FECHA").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="In_Estatus">[in_TransactionItem("ESTATUS").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="In_Importe">[in_TransactionItem("IMPORTE_TOTAL").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="In_Comentario">[in_TransactionItem("COMENTARIOS").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="In_Serie">[in_TransactionItem("FACS_SERIE").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_FactId">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem(&quot;FACT_ID&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Subastadora">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem(&quot;SUBASTADORA&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Fecha">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem(&quot;FACT_FECHA&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Estatus">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem(&quot;ESTATUS&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Importe">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem(&quot;IMPORTE_TOTAL&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Comentario">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem(&quot;COMENTARIOS&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Serie">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem(&quot;FACS_SERIE&quot;).ToString" />
+        </InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Navigate to Procesos Facturas workflow" sap:VirtualizedContainerService.HintSize="350,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="UNO Tesoreria\Navigate to Procesos Facturas.xaml">
@@ -83,29 +98,59 @@
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Procesos Facturas workflow" sap:VirtualizedContainerService.HintSize="350,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="UNO Tesoreria\Procesos Facturas.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="In_Serie">[in_TransactionItem("FACS_SERIE").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="In_Folio">[in_TransactionItem("FACT_ID").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="In_Estatus">[in_TransactionItem("ESTATUS").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="In_FechaPeriodo">[in_TransactionItem("FACT_FECHA").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="In_TotalExcel">[in_TransactionItem("IMPORTE_TOTAL").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Serie">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem(&quot;FACS_SERIE&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Folio">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem(&quot;FACT_ID&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Estatus">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem(&quot;ESTATUS&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_FechaPeriodo">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem(&quot;FACT_FECHA&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_TotalExcel">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem(&quot;IMPORTE_TOTAL&quot;).ToString" />
+        </InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Descarga Facturas workflow" sap:VirtualizedContainerService.HintSize="350,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="UNO Tesoreria\Descarga Facturas.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="In_CarpetaLayout">[in_TransactionItem("SUBASTADORA").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="In_CarpetaSSegura">Carpeta Facturas S. Segura</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="In_CarpetaAutoOnline">Carpeta Facturas Auto Online</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="In_CarpetaSVentura">Carpeta Facturas S. Ventura</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_CarpetaLayout">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem(&quot;SUBASTADORA&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_CarpetaSSegura">
+          <Literal x:TypeArguments="x:String">Carpeta Facturas S. Segura</Literal>
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_CarpetaAutoOnline">
+          <Literal x:TypeArguments="x:String">Carpeta Facturas Auto Online</Literal>
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_CarpetaSVentura">
+          <Literal x:TypeArguments="x:String">Carpeta Facturas S. Ventura</Literal>
+        </InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Envio De Correos workflow" sap:VirtualizedContainerService.HintSize="350,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="UNO Tesoreria\Envio De Correos.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="In_Body">[in_Config("Body").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="In_CuentaOrigen">[in_Config("UserAccount").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="In_Asunto">[in_Config("Subject").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="In_DestinoVentura">[in_Config("MailSVentura").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="In_DestinoAutoOnline">[in_Config("MailAutoOnline").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="In_DestinoSegura">[in_Config("MailSSegura").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Body">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Body&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_CuentaOrigen">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;UserAccount&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Asunto">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Subject&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_DestinoVentura">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailSVentura&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_DestinoAutoOnline">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailAutoOnline&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_DestinoSegura">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailSSegura&quot;).ToString" />
+        </InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
   </Sequence>

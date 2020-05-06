@@ -57,6 +57,7 @@
       <AssemblyReference>System.ServiceModel</AssemblyReference>
       <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <Sequence sap2010:Annotation.AnnotationText="En este proceso se descargan las facturas y pdf correspondientes" DisplayName="Descarga_Facturas" sap:VirtualizedContainerService.HintSize="797,1558" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -117,21 +118,21 @@
         </Sequence>
       </If.Else>
     </If>
-    <ui:InvokeCode ContinueOnError="{x:Null}" Code="If In_CarpetaLayout = &quot;S. Segura&quot; Then Out_Carpeta = In_CarpetaSSegura&#xA;If In_CarpetaLayout = &quot;Auto Online&quot; Then Out_Carpeta = In_CarpetaAutoOnline&#xA;If In_CarpetaLayout = &quot;S. Ventura&quot; Then Out_Carpeta = In_CarpetaSVentura" DisplayName="Invoke code Carpetas" sap:VirtualizedContainerService.HintSize="755,164" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="If in_CarpetaLayout = &quot;S. Segura&quot; Then out_Carpeta = in_CarpetaSSegura&#xD;&#xA;If in_CarpetaLayout = &quot;Auto Online&quot; Then out_Carpeta = in_CarpetaAutoOnline&#xD;&#xA;If in_CarpetaLayout = &quot;S. Ventura&quot; Then out_Carpeta = in_CarpetaSVentura" DisplayName="Invoke code Carpetas" sap:VirtualizedContainerService.HintSize="755,164" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
       <ui:InvokeCode.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="In_CarpetaLayout">
+        <InArgument x:TypeArguments="x:String" x:Key="in_CarpetaLayout">
           <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_CarpetaLayout" />
         </InArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="Out_Carpeta">
+        <OutArgument x:TypeArguments="x:String" x:Key="out_Carpeta">
           <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="Carpeta" />
         </OutArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="In_CarpetaSSegura">
+        <InArgument x:TypeArguments="x:String" x:Key="in_CarpetaSSegura">
           <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_CarpetaSSegura" />
         </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="In_CarpetaAutoOnline">
+        <InArgument x:TypeArguments="x:String" x:Key="in_CarpetaAutoOnline">
           <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_CarpetaAutoOnline" />
         </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="In_CarpetaSVentura">
+        <InArgument x:TypeArguments="x:String" x:Key="in_CarpetaSVentura">
           <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_CarpetaSVentura" />
         </InArgument>
       </ui:InvokeCode.Arguments>
@@ -160,7 +161,9 @@
     </ui:Click>
     <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Ciclo Carpetas workflow Factura" sap:VirtualizedContainerService.HintSize="755,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="UNO Tesoreria\Ciclo Carpetas.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="In_Carpeta">[Carpeta]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Carpeta">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Carpeta" />
+        </InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Clic 'Generar PDF'" sap:VirtualizedContainerService.HintSize="755,106" sap2010:WorkflowViewState.IdRef="Click_8" KeyModifiers="None" MouseButton="BTN_LEFT">
@@ -187,7 +190,9 @@
     </ui:Click>
     <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Ciclo Carpetas workflow PDF" sap:VirtualizedContainerService.HintSize="755,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="UNO Tesoreria\Ciclo Carpetas.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="In_Carpeta">[Carpeta]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Carpeta">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Carpeta" />
+        </InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
   </Sequence>

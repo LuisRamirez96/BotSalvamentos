@@ -5,7 +5,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1240,960</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1240,1000</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Main2_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -66,6 +66,7 @@
       <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>UiPath.Mail</AssemblyReference>
       <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <StateMachine InitialState="{x:Reference __ReferenceID3}" sap2010:Annotation.AnnotationText="[Process title]&#xA;[Process description]&#xA;[Additional information (e.g., author, contact information and applications involved and required external setup)]" DisplayName="General Business Process" sap:VirtualizedContainerService.HintSize="687,795" sap2010:WorkflowViewState.IdRef="StateMachine_1">
@@ -191,9 +192,9 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <Transition.To>
-            <State x:Name="__ReferenceID2" sap2010:Annotation.AnnotationText="Process a single transaction. &#xA;The result of the processing can be: 1) Success, 2) Business Exception, 3) System Exception. &#xA;In the case of a system exception, the transaction can be automatically retried." DisplayName="Process Transaction" sap:VirtualizedContainerService.HintSize="625,1369" sap2010:WorkflowViewState.IdRef="State_3">
+            <State x:Name="__ReferenceID2" sap2010:Annotation.AnnotationText="Process a single transaction. &#xA;The result of the processing can be: 1) Success, 2) Business Exception, 3) System Exception. &#xA;In the case of a system exception, the transaction can be automatically retried." DisplayName="Process Transaction" sap:VirtualizedContainerService.HintSize="625,1657" sap2010:WorkflowViewState.IdRef="State_3">
               <State.Entry>
-                <TryCatch DisplayName="Try to process transaction" sap:VirtualizedContainerService.HintSize="579,898" sap2010:WorkflowViewState.IdRef="TryCatch_9">
+                <TryCatch DisplayName="Try to process transaction" sap:VirtualizedContainerService.HintSize="579,1186" sap2010:WorkflowViewState.IdRef="TryCatch_9">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -224,7 +225,7 @@
                     </Sequence>
                   </TryCatch.Try>
                   <TryCatch.Catches>
-                    <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="545,714" sap2010:WorkflowViewState.IdRef="Catch`1_9">
+                    <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="545,1002" sap2010:WorkflowViewState.IdRef="Catch`1_9">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -235,7 +236,7 @@
                         <ActivityAction.Argument>
                           <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="Exception" />
                         </ActivityAction.Argument>
-                        <Sequence sap2010:Annotation.AnnotationText="Se añaden las Excepciones encontradas" DisplayName="Secuencia Buiness Exception" sap:VirtualizedContainerService.HintSize="539,645" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                        <Sequence sap2010:Annotation.AnnotationText="Se añaden las Excepciones encontradas" DisplayName="Secuencia Buiness Exception" sap:VirtualizedContainerService.HintSize="539,933" sap2010:WorkflowViewState.IdRef="Sequence_29">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -250,7 +251,7 @@
                               <InArgument x:TypeArguments="ui:BusinessRuleException">[Exception]</InArgument>
                             </Assign.Value>
                           </Assign>
-                          <Switch x:TypeArguments="x:String" DisplayName="Cambiar BRE" Expression="[BusinessException.Message]" sap:VirtualizedContainerService.HintSize="497,422" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+                          <Switch x:TypeArguments="x:String" DisplayName="Cambiar BRE" Expression="[BusinessException.Message]" sap:VirtualizedContainerService.HintSize="497,710" sap2010:WorkflowViewState.IdRef="Switch`1_1">
                             <ui:ExcelApplicationScope Password="{x:Null}" x:Key="Factura No Existe" CreateNewFile="False" DisplayName="Excel Application Scope Factura No Existe" sap:VirtualizedContainerService.HintSize="434,196" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" Visible="False" WorkbookPath="[Config(&quot;LayoutHDI&quot;).ToString]">
                               <ui:ExcelApplicationScope.Body>
                                 <ActivityAction x:TypeArguments="ui:WorkbookApplication">
@@ -281,7 +282,7 @@
                                 </ActivityAction>
                               </ui:ExcelApplicationScope.Body>
                             </ui:ExcelApplicationScope>
-                            <ui:ExcelApplicationScope Password="{x:Null}" x:Key="Registro ya procesado" CreateNewFile="False" DisplayName="Excel Application Scope Registro Ya Procesado" sap:VirtualizedContainerService.HintSize="434,196" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_4" Visible="False" WorkbookPath="[Config(&quot;LayoutHDI&quot;).ToString]">
+                            <ui:ExcelApplicationScope Password="{x:Null}" x:Key="Registro procesado" CreateNewFile="False" DisplayName="Excel Application Scope Registro Ya Procesado" sap:VirtualizedContainerService.HintSize="434,196" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_4" Visible="False" WorkbookPath="[Config(&quot;LayoutHDI&quot;).ToString]">
                               <ui:ExcelApplicationScope.Body>
                                 <ActivityAction x:TypeArguments="ui:WorkbookApplication">
                                   <ActivityAction.Argument>
@@ -290,6 +291,12 @@
                                   <ui:ExcelWriteCell Cell="[&quot;M&quot;+(TransactionNumber+1).ToString]" DisplayName="Write Cell Factura Registro Ya Procesado" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_4" SheetName="Hoja1" Text="El registro ya fue procesado" />
                                 </ActivityAction>
                               </ui:ExcelApplicationScope.Body>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
                             </ui:ExcelApplicationScope>
                             <ui:ExcelApplicationScope Password="{x:Null}" x:Key="Falta Número de Folio" CreateNewFile="False" DisplayName="Excel Application Scope Falta Folio" sap:VirtualizedContainerService.HintSize="434,196" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_5" Visible="False" WorkbookPath="[Config(&quot;LayoutHDI&quot;).ToString]">
                               <ui:ExcelApplicationScope.Body>
@@ -388,6 +395,26 @@
                                     <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
                                   </ActivityAction.Argument>
                                   <ui:ExcelWriteCell Cell="[&quot;M&quot;+(TransactionNumber+1).ToString]" DisplayName="Write Cell Serie Incorrecta" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_14" SheetName="Hoja1" Text="La serie está vacía o es incorrecta" />
+                                </ActivityAction>
+                              </ui:ExcelApplicationScope.Body>
+                            </ui:ExcelApplicationScope>
+                            <ui:ExcelApplicationScope Password="{x:Null}" x:Key="Ocurrio una advertencia" CreateNewFile="False" DisplayName="Excel Application Scope Ocurrió Una Advertencia" sap:VirtualizedContainerService.HintSize="434,196" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_15" Visible="False" WorkbookPath="[Config(&quot;LayoutHDI&quot;).ToString]">
+                              <ui:ExcelApplicationScope.Body>
+                                <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                                  </ActivityAction.Argument>
+                                  <ui:ExcelWriteCell Cell="[&quot;M&quot;+(TransactionNumber+1).ToString]" DisplayName="Write Cell Ocurrió una advertencia" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_15" SheetName="Hoja1" Text="Ocurrió una advertencia" />
+                                </ActivityAction>
+                              </ui:ExcelApplicationScope.Body>
+                            </ui:ExcelApplicationScope>
+                            <ui:ExcelApplicationScope Password="{x:Null}" x:Key="Tamaño folio incorrecto" CreateNewFile="False" DisplayName="Excel Application Scope Folio Incorrecto" sap:VirtualizedContainerService.HintSize="434,196" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_16" Visible="False" WorkbookPath="[Config(&quot;LayoutHDI&quot;).ToString]">
+                              <ui:ExcelApplicationScope.Body>
+                                <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                                  </ActivityAction.Argument>
+                                  <ui:ExcelWriteCell Cell="[&quot;M&quot;+(TransactionNumber+1).ToString]" DisplayName="Write Cell Tamaño Folio Incorrecto" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_16" SheetName="Hoja1" Text="La longitud del Folio es incorrecta" />
                                 </ActivityAction>
                               </ui:ExcelApplicationScope.Body>
                             </ui:ExcelApplicationScope>
@@ -643,11 +670,11 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <Transition.To>
-                            <State x:Name="__ReferenceID1" sap2010:Annotation.AnnotationText="End process and close all applications used." DisplayName="End Process" sap:VirtualizedContainerService.HintSize="144,119" sap2010:WorkflowViewState.IdRef="State_1" IsFinal="True">
+                            <State x:Name="__ReferenceID1" sap2010:Annotation.AnnotationText="End process and close all applications used." DisplayName="End Process" sap:VirtualizedContainerService.HintSize="484,739" sap2010:WorkflowViewState.IdRef="State_1" IsFinal="True">
                               <State.Entry>
-                                <TryCatch DisplayName="Try to close all aplications" sap:VirtualizedContainerService.HintSize="438,533" sap2010:WorkflowViewState.IdRef="TryCatch_4">
+                                <TryCatch DisplayName="Try to close all aplications" sap:VirtualizedContainerService.HintSize="438,595" sap2010:WorkflowViewState.IdRef="TryCatch_4">
                                   <TryCatch.Try>
-                                    <Sequence DisplayName="Secuencia" sap:VirtualizedContainerService.HintSize="376,306" sap2010:WorkflowViewState.IdRef="Sequence_30">
+                                    <Sequence DisplayName="Secuencia Close Apps" sap:VirtualizedContainerService.HintSize="376,368" sap2010:WorkflowViewState.IdRef="Sequence_30">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -655,14 +682,15 @@
                                       </sap:WorkflowViewStateService.ViewState>
                                       <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Envio De Correo Final workflow" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_26" UnSafe="False" WorkflowFileName="UNO Tesoreria\Envio De Correo Final.xaml">
                                         <ui:InvokeWorkflowFile.Arguments>
-                                          <InArgument x:TypeArguments="x:String" x:Key="In_DestinoSegura">[Config("MailSSegura").ToString]</InArgument>
-                                          <InArgument x:TypeArguments="x:String" x:Key="In_Asunto">[Config("Subject").ToString]</InArgument>
-                                          <InArgument x:TypeArguments="x:String" x:Key="In_Body">[Config("Body").ToString]</InArgument>
-                                          <InArgument x:TypeArguments="x:String" x:Key="In_CuentaOrigen">[Config("UserAccount").ToString]</InArgument>
-                                          <InArgument x:TypeArguments="x:String" x:Key="In_DestinoVentura">[Config("MailSVentura").ToString]</InArgument>
-                                          <InArgument x:TypeArguments="x:String" x:Key="In_DestinoAutoOnline">[Config("MailAutoOnline").ToString]</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="in_DestinoSegura">[Config("MailSSegura").ToString]</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="in_Asunto">[Config("Subject").ToString]</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="in_Body">[Config("Body").ToString]</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="in_CuentaOrigen">[Config("UserAccount").ToString]</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="in_DestinoVentura">[Config("MailSVentura").ToString]</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="in_DestinoAutoOnline">[Config("MailAutoOnline").ToString]</InArgument>
                                         </ui:InvokeWorkflowFile.Arguments>
                                       </ui:InvokeWorkflowFile>
+                                      <ui:Delete ContinueOnError="{x:Null}" DisplayName="Eliminar Layout HDI" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Delete_1" Path="[Config(&quot;LayoutHDI&quot;).ToString]" />
                                       <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke CloseAllApplications workflow" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_21" UnSafe="False" WorkflowFileName="Framework\CloseAllApplications.xaml">
                                         <ui:InvokeWorkflowFile.Arguments>
                                           <scg:Dictionary x:TypeArguments="x:String, Argument" />
