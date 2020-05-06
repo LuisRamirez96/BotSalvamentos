@@ -7,7 +7,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1240,1537</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1240,1568</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Search_For_Subject_Email_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="42">
@@ -57,16 +57,16 @@
       <AssemblyReference>UiPath.Mail</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>System.ServiceModel</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Search_For_Subject_Email" sap:VirtualizedContainerService.HintSize="584,1332" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Este flujo realiza el proceso de escanear el correo y descargar e Layout" DisplayName="Search_For_Subject_Email" sap:VirtualizedContainerService.HintSize="584,1363" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Name="Count" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <Assign DisplayName="Asignar Contador Ciclo" sap:VirtualizedContainerService.HintSize="542,60" sap2010:WorkflowViewState.IdRef="Assign_1">
@@ -100,18 +100,18 @@
           <ui:ForEach.Body>
             <ActivityAction x:TypeArguments="snm:MailMessage">
               <ActivityAction.Argument>
-                <DelegateInArgument x:TypeArguments="snm:MailMessage" Name="item" />
+                <DelegateInArgument x:TypeArguments="snm:MailMessage" Name="ItemToLoop" />
               </ActivityAction.Argument>
               <Sequence DisplayName="Body Save Attachment" sap:VirtualizedContainerService.HintSize="418,602" sap2010:WorkflowViewState.IdRef="Sequence_3">
-                <Sequence.Variables>
-                  <Variable x:TypeArguments="ui:GenericValue" Name="StrSubject" />
-                </Sequence.Variables>
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
                 <Sequence DisplayName="Sequence Save Attachment" sap:VirtualizedContainerService.HintSize="376,410" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="ui:GenericValue" Name="StrSubject" />
+                  </Sequence.Variables>
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -123,10 +123,10 @@
                       <OutArgument x:TypeArguments="ui:GenericValue">[StrSubject]</OutArgument>
                     </Assign.To>
                     <Assign.Value>
-                      <InArgument x:TypeArguments="ui:GenericValue">[item.Subject.ToString]</InArgument>
+                      <InArgument x:TypeArguments="ui:GenericValue">[ItemToLoop.Subject.ToString]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <ui:SaveMailAttachments Attachments="{x:Null}" DisplayName="Save Attachments From Outlook" FolderPath="[in_FolderLayout]" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="SaveMailAttachments_1" Message="[item]">
+                  <ui:SaveMailAttachments Attachments="{x:Null}" DisplayName="Save Attachments From Outlook" FolderPath="[in_FolderLayout]" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="SaveMailAttachments_1" Message="[ItemToLoop]">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>

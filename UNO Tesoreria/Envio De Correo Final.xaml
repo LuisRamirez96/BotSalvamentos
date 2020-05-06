@@ -59,10 +59,9 @@
       <AssemblyReference>UiPath.Mail</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>System.ServiceModel</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Este proceso envía por correo las carpetas de facturas y pdf correspondientes" DisplayName="Envio_De_Correo_Final" sap:VirtualizedContainerService.HintSize="598,2655" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Este proceso envía por correo las carpetas de facturas y pdf correspondientes" DisplayName="Envio_De_Correo_Final" sap:VirtualizedContainerService.HintSize="797,2655" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="RutaDesktop" />
       <Variable x:TypeArguments="x:Int32" Name="NumFilesSegura" />
@@ -75,8 +74,8 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:GetEnvironmentFolder DisplayName="Obtener carpeta de entorno de Escritorio" FolderPath="[RutaDesktop]" sap:VirtualizedContainerService.HintSize="556,61" sap2010:WorkflowViewState.IdRef="GetEnvironmentFolder_1" SpecialFolder="Desktop" />
-    <Assign DisplayName="Numero archivos S. Segura" sap:VirtualizedContainerService.HintSize="556,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <ui:GetEnvironmentFolder DisplayName="Obtener carpeta de entorno de Escritorio" FolderPath="[RutaDesktop]" sap:VirtualizedContainerService.HintSize="755,61" sap2010:WorkflowViewState.IdRef="GetEnvironmentFolder_1" SpecialFolder="Desktop" />
+    <Assign DisplayName="Numero archivos S. Segura" sap:VirtualizedContainerService.HintSize="755,60" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Int32">[NumFilesSegura]</OutArgument>
       </Assign.To>
@@ -84,7 +83,7 @@
         <InArgument x:TypeArguments="x:Int32">[Directory.GetFiles(RutaDesktop+"\Carpeta Facturas S. Segura").Count]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Numero archivos Auto Online" sap:VirtualizedContainerService.HintSize="556,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+    <Assign DisplayName="Numero archivos Auto Online" sap:VirtualizedContainerService.HintSize="755,60" sap2010:WorkflowViewState.IdRef="Assign_2">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Int32">[NumFilesAutoOnline]</OutArgument>
       </Assign.To>
@@ -92,7 +91,7 @@
         <InArgument x:TypeArguments="x:Int32">[Directory.GetFiles(RutaDesktop+"\Carpeta Facturas Auto Online").Count]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Numero archivos S. Ventura" sap:VirtualizedContainerService.HintSize="556,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <Assign DisplayName="Numero archivos S. Ventura" sap:VirtualizedContainerService.HintSize="755,60" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Int32">[NumFilesVentura]</OutArgument>
       </Assign.To>
@@ -100,8 +99,8 @@
         <InArgument x:TypeArguments="x:Int32">[Directory.GetFiles(RutaDesktop+"\Carpeta Facturas S. Ventura").Count]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:LogMessage DisplayName="Registrar mensaje Total Mensajes" sap:VirtualizedContainerService.HintSize="556,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;FilesSegura: &quot;+NumFilesSegura.ToString+&quot; AutoOnline: &quot;+NumFilesAutoOnline.ToString+&quot; Ventura: &quot;+NumFilesVentura.ToString]" />
-    <If Condition="[NumFilesSegura &gt;= 2]" DisplayName="Si S. Segura contiene archivos" sap:VirtualizedContainerService.HintSize="556,640" sap2010:WorkflowViewState.IdRef="If_1">
+    <ui:LogMessage DisplayName="Registrar mensaje Total Mensajes" sap:VirtualizedContainerService.HintSize="755,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;FilesSegura: &quot;+NumFilesSegura.ToString+&quot; AutoOnline: &quot;+NumFilesAutoOnline.ToString+&quot; Ventura: &quot;+NumFilesVentura.ToString]" />
+    <If Condition="[NumFilesSegura &gt;= 2]" DisplayName="Si S. Segura contiene archivos" sap:VirtualizedContainerService.HintSize="755,640" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
         <Sequence DisplayName="Secuencia Correo Segura" sap:VirtualizedContainerService.HintSize="376,492" sap2010:WorkflowViewState.IdRef="Sequence_5">
           <sap:WorkflowViewStateService.ViewState>
@@ -122,8 +121,11 @@
           <ui:LogMessage DisplayName="Registrar mensaje Correo Segura" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;Se envio correo Segura Final y eliminó ZIP&quot;]" />
         </Sequence>
       </If.Then>
+      <If.Else>
+        <ui:LogMessage DisplayName="Registrar mensaje Segura No Envia" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Info" Message="[&quot;Segura No Envia&quot;]" />
+      </If.Else>
     </If>
-    <If Condition="[NumFilesAutoOnline &gt;= 2]" DisplayName="Si Auto Online contiene archivos" sap:VirtualizedContainerService.HintSize="556,640" sap2010:WorkflowViewState.IdRef="If_2">
+    <If Condition="[NumFilesAutoOnline &gt;= 2]" DisplayName="Si Auto Online contiene archivos" sap:VirtualizedContainerService.HintSize="755,640" sap2010:WorkflowViewState.IdRef="If_2">
       <If.Then>
         <Sequence DisplayName="Secuencia Correo Auto Online" sap:VirtualizedContainerService.HintSize="376,492" sap2010:WorkflowViewState.IdRef="Sequence_6">
           <sap:WorkflowViewStateService.ViewState>
@@ -144,8 +146,11 @@
           <ui:LogMessage DisplayName="Registrar mensaje Correo Auto Online" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;Se envio correo AutoOnline Final y eliminó ZIP&quot;]" />
         </Sequence>
       </If.Then>
+      <If.Else>
+        <ui:LogMessage DisplayName="Registrar mensaje AutoOnline No Envia" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Info" Message="[&quot;AutoOnline No Envia&quot;]" />
+      </If.Else>
     </If>
-    <If Condition="[NumFilesVentura &gt;= 2]" DisplayName="Si S. Ventura contiene archivos" sap:VirtualizedContainerService.HintSize="556,640" sap2010:WorkflowViewState.IdRef="If_3">
+    <If Condition="[NumFilesVentura &gt;= 2]" DisplayName="Si S. Ventura contiene archivos" sap:VirtualizedContainerService.HintSize="755,640" sap2010:WorkflowViewState.IdRef="If_3">
       <If.Then>
         <Sequence DisplayName="Secuencia Correo Ventura" sap:VirtualizedContainerService.HintSize="376,492" sap2010:WorkflowViewState.IdRef="Sequence_8">
           <sap:WorkflowViewStateService.ViewState>
@@ -166,6 +171,9 @@
           <ui:LogMessage DisplayName="Registrar mensaje Correo Ventura" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[&quot;Se envio correo Ventura Final y eliminó ZIP&quot;]" />
         </Sequence>
       </If.Then>
+      <If.Else>
+        <ui:LogMessage DisplayName="Registrar mensaje Ventura No Envia" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Info" Message="[&quot;Ventura No Envia&quot;]" />
+      </If.Else>
     </If>
   </Sequence>
 </Activity>
