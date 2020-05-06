@@ -1,9 +1,9 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Descarga_Facturas" this:Descarga_Facturas.In_CarpetaLayout="S. Segura" this:Descarga_Facturas.In_CarpetaSSegura="Carpeta Facturas S. Segura" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Descarga_Facturas" this:Descarga_Facturas.in_CarpetaLayout="S. Segura" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="In_CarpetaLayout" Type="InArgument(x:String)" />
-    <x:Property Name="In_CarpetaSSegura" Type="InArgument(x:String)" />
-    <x:Property Name="In_CarpetaAutoOnline" Type="InArgument(x:String)" />
-    <x:Property Name="In_CarpetaSVentura" Type="InArgument(x:String)" />
+    <x:Property Name="in_CarpetaLayout" Type="InArgument(x:String)" />
+    <x:Property Name="in_CarpetaSSegura" Type="InArgument(x:String)" />
+    <x:Property Name="in_CarpetaAutoOnline" Type="InArgument(x:String)" />
+    <x:Property Name="in_CarpetaSVentura" Type="InArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
@@ -119,11 +119,21 @@
     </If>
     <ui:InvokeCode ContinueOnError="{x:Null}" Code="If In_CarpetaLayout = &quot;S. Segura&quot; Then Out_Carpeta = In_CarpetaSSegura&#xA;If In_CarpetaLayout = &quot;Auto Online&quot; Then Out_Carpeta = In_CarpetaAutoOnline&#xA;If In_CarpetaLayout = &quot;S. Ventura&quot; Then Out_Carpeta = In_CarpetaSVentura" DisplayName="Invoke code Carpetas" sap:VirtualizedContainerService.HintSize="755,164" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
       <ui:InvokeCode.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="In_CarpetaLayout">[In_CarpetaLayout]</InArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="Out_Carpeta">[Carpeta]</OutArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="In_CarpetaSSegura">[In_CarpetaSSegura]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="In_CarpetaAutoOnline">[In_CarpetaAutoOnline]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="In_CarpetaSVentura">[In_CarpetaSVentura]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="In_CarpetaLayout">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_CarpetaLayout" />
+        </InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="Out_Carpeta">
+          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="Carpeta" />
+        </OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="In_CarpetaSSegura">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_CarpetaSSegura" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="In_CarpetaAutoOnline">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_CarpetaAutoOnline" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="In_CarpetaSVentura">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_CarpetaSVentura" />
+        </InArgument>
       </ui:InvokeCode.Arguments>
     </ui:InvokeCode>
     <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Clic 'Factura Electrónica'" sap:VirtualizedContainerService.HintSize="755,106" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">

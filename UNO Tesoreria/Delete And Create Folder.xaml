@@ -1,13 +1,13 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="Delete_And_Create_Folder" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="In_CarpetaSSegura" Type="InArgument(x:String)" />
-    <x:Property Name="In_CarpetaAutoOnline" Type="InArgument(x:String)" />
-    <x:Property Name="In_CarpetaSVentura" Type="InArgument(x:String)" />
+    <x:Property Name="in_CarpetaSSegura" Type="InArgument(x:String)" />
+    <x:Property Name="in_CarpetaAutoOnline" Type="InArgument(x:String)" />
+    <x:Property Name="in_CarpetaSVentura" Type="InArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>588,1936</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1240,1936</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Delete_And_Create_Folder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="21">
@@ -87,8 +87,8 @@
       </If.Then>
     </If>
     <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Crear carpeta S. Segura" sap:VirtualizedContainerService.HintSize="556,84" sap2010:WorkflowViewState.IdRef="CreateDirectory_4" Path="[RutaDesktop+&quot;\Carpeta Facturas S. Segura&quot;]" />
-    <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Crear carpeta S. Segura" sap:VirtualizedContainerService.HintSize="556,84" sap2010:WorkflowViewState.IdRef="CreateDirectory_5" Path="[RutaDesktop+&quot;\Carpeta Facturas Auto Online&quot;]" />
-    <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Crear carpeta S. Segura" sap:VirtualizedContainerService.HintSize="556,84" sap2010:WorkflowViewState.IdRef="CreateDirectory_6" Path="[RutaDesktop+&quot;\Carpeta Facturas S. Ventura&quot;]" />
+    <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Crear carpeta Auto Online" sap:VirtualizedContainerService.HintSize="556,84" sap2010:WorkflowViewState.IdRef="CreateDirectory_5" Path="[RutaDesktop+&quot;\Carpeta Facturas Auto Online&quot;]" />
+    <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Crear carpeta S. Ventura" sap:VirtualizedContainerService.HintSize="556,84" sap2010:WorkflowViewState.IdRef="CreateDirectory_6" Path="[RutaDesktop+&quot;\Carpeta Facturas S. Ventura&quot;]" />
     <ui:LogMessage DisplayName="Registrar mensaje Carpetas Creadas" sap:VirtualizedContainerService.HintSize="556,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Se crearon las carpetas&quot;]" />
   </Sequence>
 </Activity>

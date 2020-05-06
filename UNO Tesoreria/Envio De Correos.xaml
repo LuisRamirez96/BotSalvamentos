@@ -1,11 +1,11 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="Envio_De_Correos" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:be="clr-namespace:BalaReva.Externals;assembly=BalaReva.Externals" xmlns:bes="clr-namespace:BalaReva.Externals.Systems;assembly=BalaReva.Externals" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="In_Body" Type="InArgument(x:String)" />
-    <x:Property Name="In_CuentaOrigen" Type="InArgument(x:String)" />
-    <x:Property Name="In_Asunto" Type="InArgument(x:String)" />
-    <x:Property Name="In_DestinoVentura" Type="InArgument(x:String)" />
-    <x:Property Name="In_DestinoAutoOnline" Type="InArgument(x:String)" />
-    <x:Property Name="In_DestinoSegura" Type="InArgument(x:String)" />
+    <x:Property Name="in_Body" Type="InArgument(x:String)" />
+    <x:Property Name="in_CuentaOrigen" Type="InArgument(x:String)" />
+    <x:Property Name="in_Asunto" Type="InArgument(x:String)" />
+    <x:Property Name="in_DestinoVentura" Type="InArgument(x:String)" />
+    <x:Property Name="in_DestinoAutoOnline" Type="InArgument(x:String)" />
+    <x:Property Name="in_DestinoSegura" Type="InArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
@@ -128,7 +128,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <be:ZipFiles MultipleFolders="{x:Null}" Password="{x:Null}" DisplayName="Zip S. Segura" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="ZipFiles_2" SourceFolder="[RutaDesktop+&quot;\Carpeta Facturas S. Segura&quot;]" ZipFile="[RutaDesktop+&quot;\Carpeta Facturas S. Segura.zip&quot;]" />
-          <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Account="[In_CuentaOrigen]" Body="[In_Body]" DisplayName="Send Outlook Mail Message Segura ZIP" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="SendOutlookMail_2" IsBodyHtml="True" IsDraft="False" Subject="[In_Asunto+&quot; de S. Segura&quot;]" To="[In_DestinoSegura]">
+          <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Account="[in_CuentaOrigen]" Body="[in_Body]" DisplayName="Send Outlook Mail Message Segura ZIP" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="SendOutlookMail_2" IsBodyHtml="True" IsDraft="False" Subject="[in_Asunto+&quot; de S. Segura&quot;]" To="[in_DestinoSegura]">
             <ui:SendOutlookMail.Files>
               <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
                 <InArgument x:TypeArguments="x:String">[RutaDesktop+"\Carpeta Facturas S. Segura.zip"]</InArgument>
@@ -149,7 +149,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <be:ZipFiles MultipleFolders="{x:Null}" Password="{x:Null}" DisplayName="Zip Auto Online" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="ZipFiles_3" SourceFolder="[RutaDesktop+&quot;\Carpeta Facturas Auto Online&quot;]" ZipFile="[RutaDesktop+&quot;\Carpeta Facturas Auto Online.zip&quot;]" />
-          <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Account="[In_CuentaOrigen]" Body="[In_Body]" DisplayName="Send Outlook Mail Message Auto Online ZIP" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="SendOutlookMail_3" IsBodyHtml="True" IsDraft="False" Subject="[In_Asunto+&quot; de Auto Online&quot;]" To="[In_DestinoAutoOnline]">
+          <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Account="[in_CuentaOrigen]" Body="[in_Body]" DisplayName="Send Outlook Mail Message Auto Online ZIP" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="SendOutlookMail_3" IsBodyHtml="True" IsDraft="False" Subject="[in_Asunto+&quot; de Auto Online&quot;]" To="[in_DestinoAutoOnline]">
             <ui:SendOutlookMail.Files>
               <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
                 <InArgument x:TypeArguments="x:String">[RutaDesktop+"\Carpeta Facturas Auto Online.zip"]</InArgument>
@@ -170,7 +170,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <be:ZipFiles MultipleFolders="{x:Null}" Password="{x:Null}" DisplayName="Zip S. Ventura" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="ZipFiles_4" SourceFolder="[RutaDesktop+&quot;\Carpeta Facturas S. Ventura&quot;]" ZipFile="[RutaDesktop+&quot;\Carpeta Facturas S. Ventura.zip&quot;]" />
-          <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Account="[In_CuentaOrigen]" Body="[In_Body]" DisplayName="Send Outlook Mail Message S. Ventura ZIP" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" IsBodyHtml="True" IsDraft="False" Subject="[In_Asunto+&quot; de S. Ventura&quot;]" To="[In_DestinoVentura]">
+          <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Account="[in_CuentaOrigen]" Body="[in_Body]" DisplayName="Send Outlook Mail Message S. Ventura ZIP" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" IsBodyHtml="True" IsDraft="False" Subject="[in_Asunto+&quot; de S. Ventura&quot;]" To="[in_DestinoVentura]">
             <ui:SendOutlookMail.Files>
               <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
                 <InArgument x:TypeArguments="x:String">[RutaDesktop+"\Carpeta Facturas S. Ventura.zip"]</InArgument>

@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Facturacion_Process" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1240,2024" sap2010:WorkflowViewState.IdRef="Facturacion_Process_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Facturacion_Process" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1240,2096" sap2010:WorkflowViewState.IdRef="Facturacion_Process_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="21">
       <x:String>System.Activities</x:String>
@@ -44,7 +44,7 @@
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Este proceso navega a través de botones en Tesoreria para abrir la ventana de Procesos Facturas" DisplayName="Facturacion_Process" sap:VirtualizedContainerService.HintSize="797,1819" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Este proceso navega a través de botones en Tesoreria para abrir la ventana de Procesos Facturas" DisplayName="Facturacion_Process" sap:VirtualizedContainerService.HintSize="797,1891" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Boolean" Name="MensajeInformacion" />
       <Variable x:TypeArguments="x:Boolean" Name="MenuFacturacion" />
@@ -60,19 +60,25 @@
         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="59d30b94e314eb8499c97f69d2353013" Selector="&lt;wnd app='tesoreria.ui.win32.exe' ctrlname='MainForm' /&gt;&lt;wnd ctrlname='menuStrip1' /&gt;&lt;ctrl name='menuStrip1' role='menu bar' /&gt;&lt;ctrl name='Facturación' role='menu item' /&gt;" TimeoutMS="120000" WaitForReady="COMPLETE" />
       </ui:UiElementExists.Target>
     </ui:UiElementExists>
-    <If Condition="[MenuFacturacion]" DisplayName="Si Facturación Existe" sap:VirtualizedContainerService.HintSize="755,539" sap2010:WorkflowViewState.IdRef="If_2">
+    <If Condition="[MenuFacturacion]" DisplayName="Si Facturación Existe" sap:VirtualizedContainerService.HintSize="755,611" sap2010:WorkflowViewState.IdRef="If_2">
       <If.Then>
         <ui:LogMessage DisplayName="Registrar mensaje Facturacion Exist" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Facturacion Existe&quot;]" />
       </If.Then>
       <If.Else>
-        <Sequence DisplayName="Secuencia Delay" sap:VirtualizedContainerService.HintSize="376,391" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence DisplayName="Secuencia Delay" sap:VirtualizedContainerService.HintSize="376,463" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Delay DisplayName="Retraso" Duration="180000.00:00:00" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
-          <ui:LogMessage DisplayName="Registrar mensaje Facturacion No Exist" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Facturacion no existe, delay&quot;]" />
+          <Delay sap2010:Annotation.AnnotationText="Se ha agregado un Delay debido a que el sistema Tesoreria es inestable en cuanto tiempos de espera" DisplayName="Retraso " Duration="180000.00:00:00" sap:VirtualizedContainerService.HintSize="334,94" sap2010:WorkflowViewState.IdRef="Delay_1">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Delay>
+          <ui:LogMessage DisplayName="Registrar mensaje Facturacion Aun No Aparece" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Facturacion no existe, delay&quot;]" />
           <ui:UiElementExists DisplayName="Elemento existente 'Facturación Despues de Delay'" Exists="[MenuFacturacion]" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="UiElementExists_3">
             <ui:UiElementExists.Target>
               <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="59d30b94e314eb8499c97f69d2353013" Selector="&lt;wnd app='tesoreria.ui.win32.exe' ctrlname='MainForm' /&gt;&lt;wnd ctrlname='menuStrip1' /&gt;&lt;ctrl name='menuStrip1' role='menu bar' /&gt;&lt;ctrl name='Facturación' role='menu item' /&gt;" TimeoutMS="120000" WaitForReady="COMPLETE" />
